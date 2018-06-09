@@ -1,0 +1,18 @@
+discussion-item {
+    .discussion-container {
+        position: relative;
+        min-height: 200px;
+        background-color: #FFF;
+        padding-bottom: 56px !important;
+    }
+    .discussion-bottom {
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+        color: #888;
+        p {
+            text-align: right;
+            margin-bottom: 0;
+        }
+    }
+}

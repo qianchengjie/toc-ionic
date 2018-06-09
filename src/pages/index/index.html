@@ -1,0 +1,19 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-searchbar (click)="showSearchTopicPage()" mode="ios" placeholder="搜索你感兴趣的话题"></ion-searchbar>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <super-tabs>
+    <super-tab [root]="rec" title="推荐"></super-tab>
+    <super-tab [root]="hot" title="热榜"></super-tab>
+  </super-tabs>
+  <ion-fab bottom right>
+    <button ion-fab [navPush]="submitTopicPage"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+</ion-content>

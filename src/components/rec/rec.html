@@ -1,0 +1,26 @@
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      refreshingSpinner="crescent">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <ion-card (click)="goToTopicPage(topic)" *ngFor="let topic of topics" class="topic-item">
+      <ion-card-header [style.fontWeight]="'bold'">
+        {{ topic.title }}
+      </ion-card-header>
+      <ion-card-content>
+        <p>
+          {{ utilService.html2Text(topic.content) }}
+        </p>
+        <div *ngIf="topic.images" class="topic-img" [ngStyle]="{'background': 'url(' + topic.images.split(',')[0] + ')'}"></div>
+      </ion-card-content>
+      <ion-row padding-left padding-right padding-bottom>
+        <ion-col text-right no-padding [style.color]="'#888'">
+          {{ topic.upvoteNum }}赞 · {{ topic.commentNum }}评论
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-list>
+</ion-content>

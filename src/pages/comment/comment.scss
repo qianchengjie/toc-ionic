@@ -1,0 +1,18 @@
+page-comment {
+    ion-avatar {
+        float: left;
+        img {
+            position: absolute;
+            top: 13px;
+        }
+    }
+    .comment-info {
+        margin-left: 60px;
+        .comment-time {
+            font-size: 14px;
+            display: inline-block;
+            color: #888;
+            padding-top: 10px;
+        }
+    }
+}

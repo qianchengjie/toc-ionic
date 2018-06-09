@@ -1,0 +1,113 @@
+page-message-detail {
+  .content {
+    background-color: #EEE;
+  }
+  .chat-content {
+    display: flex;
+    flex-flow: column;
+    padding: 10px;
+    .divider {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #888;
+    }
+    .chat-item {
+      margin-bottom: 15px;
+      display: flex;
+      flex-flow: row;
+      .avatar {
+        img {
+          box-shadow: 1px 1px 2px #DDD;
+          min-width: 39px;
+          height: 39px;
+          width: 39px;
+          border-radius: 50%;
+          display: inline-block;
+        }
+      }
+      .message-content {
+        position: relative;
+        p {
+          box-shadow: 1px 1px 4px #CCC;
+          margin: 0;
+          display: inline-block;
+          border-radius: 10px;
+          padding: 10px 10px;
+          &::after {
+            z-index: 100px;
+            content: ' ';
+            display: block;
+            position: absolute;
+            top: 10.75px;
+            border: 7.5px solid;
+            border-color: rgba(0,0,0,0);
+          }
+        }
+      }
+    }
+    .other-side {
+      .avatar {
+        margin-right: 5px;
+      }
+      .message-content {
+        margin-left: 10px;
+        p {
+          background-color: #FFF;
+          &::after {
+            left: -14px;
+            border-right-color: #FFF;
+          }
+        }
+      }
+    }
+    .our-side {
+      flex-direction: row-reverse;
+      margin-left: 54px;
+      .avatar {
+        margin-left: 5px;
+      }
+      .message-content {
+        margin-right: 10px;
+        p {
+          background-color: #0077e6;
+          color: #FFF;
+          &::after {
+          right: -14px;
+          border-left-color: #0077e6;
+          }
+        }
+      }
+    }
+  }
+  .my-toolbar {
+    align-items: flex-end;
+    ion-buttons {
+      padding-bottom: 10px;
+    }
+  }
+  .not-read-count {
+    position: absolute;
+    right: 10px;
+    top: -30px;
+    border-radius: 50%;
+    &::after {
+      content: " ";
+      position: absolute;
+      border: 4px solid;
+      bottom: -7px;
+      left: 38%;
+      border-color: rgba(0,0,0,0);
+      border-top-color: #488aff;
+    }
+  }
+  .text-input {
+    height: 21px;
+    align-self: top;
+    caret-color: #0077e6;
+    padding-bottom: 2px;
+    border-bottom: 2px solid rgba(0,0,0,.4);
+    &:focus {
+      border-color: #0077e6;
+    }
+  }
+}

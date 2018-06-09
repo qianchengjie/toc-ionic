@@ -1,0 +1,8 @@
+<div style="height: 400px">
+    <div *ngIf="isNotUndefined()" padding class="discussion-container">
+        <p [innerHtml]="discussion.content"></p>
+        <div class="discussion-bottom">
+            <p>编辑于 {{ discussion.gmtModified }}<br />著作权归作者所有</p>
+        </div>
+    </div>
+</div>

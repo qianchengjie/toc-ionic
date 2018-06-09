@@ -1,0 +1,30 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>分享话题</ion-title>
+
+    <ion-buttons end>
+      <button ion-button color="primary" (click)="submitTopic()">
+        提交
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-item padding-right>
+    <ion-input [(ngModel)]="topic.title" type="text" maxlength="30" placeholder="请输入标题"></ion-input>
+  </ion-item>
+  <quill-editor
+    [(ngModel)]="topic.content"
+    (onEditorCreated)="onEditorCreated($event)"
+    [modules]="editorConfig"
+    theme="bubble"
+    required
+    [style]="{ fontSize: '16px' , background: '#FFF' }"
+    placeholder="请输入你想分享的话题内容">
+  </quill-editor>
+  <input id="file" hidden ng2FileSelect [uploader]="uploader" type="file" accept="image/*">
+</ion-content>

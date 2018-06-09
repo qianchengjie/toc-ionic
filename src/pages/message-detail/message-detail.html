@@ -1,0 +1,51 @@
+<!--
+  Generated template for the MessageDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ toUser.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content scrollDownOnLoad="true">
+  <div class="chat-content"  [ngStyle]="{ 'padding-bottom': (emojiPickerShow ? 195 + paddingBottom : paddingBottom) + 'px' }">
+    <!-- <div class="divider"> 下午 14:26 </div> -->
+    <div
+    *ngFor="let message of messagesList"
+    class="chat-item"
+    [class.other-side]="message.type === 0"
+    [class.our-side]="message.type === 1">
+      <div class="avatar">
+        <img [src]="message.type === 1 ? user.avatar : 'http://img1.imgtn.bdimg.com/it/u=3742948713,2733458390&fm=27&gp=0.jpg'">
+      </div>
+      <div class="message-content">
+        <p>{{ message.content }}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-badge *ngIf="unReadCount !== 0" (click)="scrollToBottom()" class="not-read-count">{{ unReadCount }}</ion-badge>
+  <ion-toolbar class="my-toolbar">
+    <ion-buttons left>
+      <button (click)="showEmojiPicker()" ion-button icon-right>
+        <ion-icon name="happy">
+        </ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-textarea (input)="onInput($event)" autoresize="105" [(ngModel)]="messageContent"></ion-textarea>
+    <ion-buttons end>
+      <button (click)="sendMsg()" [disabled]="!messageContent" ion-button icon-right>
+        <ion-icon [color]="messageContent ? 'primary' : 'dark'" name="send">
+        </ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+  <emoji-picker *ngIf="emojiPickerShow" [(ngModel)]="messageContent"></emoji-picker>
+</ion-footer>

@@ -1,0 +1,22 @@
+page-me-info {
+    .select-text {
+        color: #c5c5c5
+      }
+      .select-icon {
+        display: none;
+      }
+      .label {
+        color: #000 !important
+      }
+      .item-md .item-inner {
+        border-bottom: 1px solid #dedede !important;
+        box-shadow: none !important;
+      }
+      .item-md:last-child .item-inner {
+        border-bottom: none !important;
+      }
+      .list-md .item-input {
+        border-bottom: none!important;
+        box-shadow: none !important;
+      }
+}

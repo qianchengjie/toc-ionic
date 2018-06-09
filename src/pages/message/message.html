@@ -1,0 +1,38 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>消息</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <!-- <ion-item>
+      <ion-avatar item-start>
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1523340317154&di=b42054e89648f13fb30c019496c5f1ac&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D5f88a11054df8db1a8237427614ab721%2Fca1349540923dd5455a607e0db09b3de9d824864.jpg">
+      </ion-avatar>
+      <h2>系统通知</h2>
+      <p>请完成实名认证</p>
+      <ion-note item-end>3:43 pm</ion-note>
+    </ion-item> -->
+    <ion-item-sliding *ngFor="let user of userList" (click)="goToMessageDetailPage(user)">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="http://img1.imgtn.bdimg.com/it/u=3742948713,2733458390&fm=27&gp=0.jpg">
+        </ion-avatar>
+        <h2>{{ user.name }}<p float-right *ngIf="user.lastChat">{{ user.lastChat.sendTime | dateStr }}</p></h2>
+        <p>{{ user.lastChat ? user.lastChat.content : '　' }}<ion-badge *ngIf="user.unReadNum !== 0" float-right color="danger">{{ user.unReadNum }}</ion-badge></p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary">
+          置顶
+        </button>
+        <button ion-button color="danger">
+          删除
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

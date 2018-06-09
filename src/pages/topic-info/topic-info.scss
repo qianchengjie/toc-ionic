@@ -1,0 +1,18 @@
+page-topic-info {
+    .topic-info {
+        border-top: 1px solid #F1F1F1;
+        background-color: #FFF;
+        .topic-title {
+            font-weight: bold;
+        }
+    }
+    ion-icon {
+        span {
+            padding-left: 10px;
+            font-size: 8px;
+        }
+        &::before {
+            font-size: 20px !important;
+        }
+    }
+}

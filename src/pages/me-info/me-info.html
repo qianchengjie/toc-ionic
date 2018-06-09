@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>个人资料</ion-title>
+    <ion-buttons end>
+      <button (click)="edit()" ion-button icon-only color="primary">
+        {{ editing ? '保存' : '编辑'}}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item (click)="chooseHeadImg()">
+      <label>头像</label>
+      <ion-thumbnail item-end >
+        <img [src]="user.avatar">
+      </ion-thumbnail>
+    </ion-item>
+    <ion-item>
+      <ion-label>昵称</ion-label>
+      <ion-note *ngIf="!editing" item-end>{{ user.username }}</ion-note>
+      <ion-input *ngIf="editing" [(ngModel)]="user.username" type="text" clearInput></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>手机号</ion-label>
+      <ion-note item-end>
+        {{ user.phone.substring(0, 3) }}****{{ user.phone.substring(7, 11) }}
+      </ion-note>
+    </ion-item>
+  </ion-list>
+  <input accept="image/*" id="file" hidden ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)" type="file">
+</ion-content>

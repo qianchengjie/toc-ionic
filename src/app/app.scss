@@ -1,0 +1,48 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+.content {
+  background-color: #FBF9FE;
+}
+
+
+// iconfont
+@font-face {
+  font-family: "Ionicons";
+  src: url('../assets/fonts/iconfont.eot?t=1527778333406'); /* IE9*/
+  src: url('../assets/fonts/iconfont.eot?t=1527778333406#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAW4AAsAAAAACQwAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFZW7klgY21hcAAAAYAAAAB1AAABuNB6DMBnbHlmAAAB+AAAAZ4AAAKExn4xN2hlYWQAAAOYAAAALwAAADYRi54zaGhlYQAAA8gAAAAcAAAAJAfeA4dobXR4AAAD5AAAABMAAAAYF+kAAGxvY2EAAAP4AAAADgAAAA4ClAG4bWF4cAAABAgAAAAfAAAAIAEVAF1uYW1lAAAEKAAAAUUAAAJtPlT+fXBvc3QAAAVwAAAARQAAAGME6todeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2Bk/sM4gYGVgYOpk+kMAwNDP4RmfM1gxMjBwMDEwMrMgBUEpLmmMDgwVDwvYm7438AQw9zA0AAUZgTJAQAtMgzjeJzFkc0NgCAMhV/5McQ4ihO4As7hyQNyYmIYA9vCxQl85IP2BVLSAvAALLMzDqAbBNHFLqlvsarvcHAeeBk+S40t9z6jpJGI9EbQyPBbJxVowW+i/0p/tel+zkz6Xib8xRoH0tuWBjKX9gxkNi0P4F9eYRgDAAAAeJy9ULGO00AU3NmN13aIN3jX8TrOJbFjJ8sRLiTBlxSIhIIGRIFERckH3LWHEEWaQxQUfMEVCAkJfiFUQAE9H4COkuauRgYL+AV4enqjN8XMvEcsQn5+ZVsWEUUukRm5Re4RAj7GQNAuUlNM6Bit1GrpQDCTmdTOBhN2A3rAg3C+KEaa27wJgR6upfOFmVCD/WJFr2MedoF2J74vhzuSvUA9Mr3j8g59iVY/22mu9srbV9bBPFHOUUPKtpTPHW5ZDqW1psCBDl3LrfPyldWMW9v+Lu2j0Tbx3Qde0pEPnxWH3aF2gc0GqpOI12s/9qt+EodKtu2LnhPFXpYHOPp2IVKN7uiUVIXq1i17z26SpFpGZshGZsZtZgn0wXi4hg6r3ItlYdhywd5xVZ49qqvAfVyeqYb34SpN/PNz24EnQfc+evgu2WUwH/DLcreWi8/lqdLu8dOaFNyC/iT+eH5hb9mYRIRYE5j9rBr+Csu0B+0L2KnNM2xkhDf5DJjl9C+WP048f4xIbjDNKRlOf5Mkn+LE+7e6//lHvwBXf3NiAAB4nGNgZGBgAGIDprXH4/ltvjJwszCAwHUzXVkE/X8PCwOzA5DLwcAEEgUA7cYIEQB4nGNgZGBgbvjfwBDDwgACQJKRARWwAQBHDAJveJxjYWBgYH7JwMDCgIoBEp8BAQAAAAAAAHYAsADcAQgBQgAAeJxjYGRgYGBjCGRgZQABJiDmAkIGhv9gPgMAEUgBcwB4nGWPTU7DMBCFX/oHpBKqqGCH5AViASj9EatuWFRq911036ZOmyqJI8et1ANwHo7ACTgC3IA78EgnmzaWx9+8eWNPANzgBx6O3y33kT1cMjtyDRe4F65TfxBukF+Em2jjVbhF/U3YxzOmwm10YXmD17hi9oR3YQ8dfAjXcI1P4Tr1L+EG+Vu4iTv8CrfQ8erCPuZeV7iNRy/2x1YvnF6p5UHFockikzm/gple75KFrdLqnGtbxCZTg6BfSVOdaVvdU+zXQ+ciFVmTqgmrOkmMyq3Z6tAFG+fyUa8XiR6EJuVYY/62xgKOcQWFJQ6MMUIYZIjK6Og7VWb0r7FDwl57Vj3N53RbFNT/c4UBAvTPXFO6stJ5Ok+BPV8bUnV0K27LnpQ0kV7NSRKyQl7WtlRC6gE2ZVeOEXpc0Yk/KGdI/wAJWm7IAAAAeJxjYGKAAC4G7ICNkYmRmZGFkZWRjZGdgbGCMy2xLL8oLTMnhz05Pzc3Na+EB0rrJucXVArApXUTk0syy1IZGAD+fBLaAAAA') format('woff'),
+  url('../assets/fonts/iconfont.ttf?t=1527778333406') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../assets/fonts/iconfont.svg?t=1527778333406#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"Ionicons" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ion-md-favorfill:before { content: "\e64b"; }
+
+.ion-md-comment:before { content: "\e770"; }
+
+.ion-md-comment-copy:before { content: "\e771"; }
+
+.ion-md-favorfill-active:before { content: "\e772"; }
+

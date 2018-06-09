@@ -1,0 +1,33 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list no-margin>
+    <ion-item>
+      <ion-avatar (click)="goToUserInfoPage()" item-start>
+        <img *ngIf="userinfo.avatar" [src]="userinfo.avatar" />
+      </ion-avatar>
+      <h2 (click)="goToUserInfoPage()">{{ userinfo.username }}</h2>
+      <button item-end small ion-button>私信</button>
+    </ion-item>
+  </ion-list>
+  <div padding class="topic-info">
+    <h4 class="topic-title">{{ topic.title }}</h4>
+    <p class="topic-content" [innerHtml]="topic.content"></p>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <button (click)="goToSubmitDiscussionPage()" float-right clear color="dark" ion-button icon-left >
+      <ion-icon name="ios-create-outline"></ion-icon>
+      添加讨论
+    </button>
+  </ion-toolbar>
+</ion-footer>

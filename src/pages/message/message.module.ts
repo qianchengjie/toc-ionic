@@ -1,0 +1,15 @@
+import { NgModule } from '@angular/core';
+import { IonicPageModule } from 'ionic-angular';
+import { MessagePage } from './message';
+import { DateStrPipe } from '../../pipes/date-str/date-str';
+
+@NgModule({
+  declarations: [
+    MessagePage,
+    DateStrPipe
+  ],
+  imports: [
+    IonicPageModule.forChild(MessagePage),
+  ],
+})
+export class MessagePageModule {}

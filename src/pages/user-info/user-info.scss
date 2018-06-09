@@ -1,0 +1,33 @@
+page-user-info {
+    .userinfo-header {
+        background-color: #FFF;
+        .userinfo-header-wrap {
+            height: 150px;
+            background-color: map-get($colors, primary);
+        }
+        .avatar {
+            height: 120px;
+            width: 120px;
+            border-radius: 60px;
+            display: flex;
+            margin: -60px auto;
+            margin-bottom: 10px;
+            border: 4px solid #FFF;
+        }
+        .userinfo-header-body {
+            .userinfo-header-name {
+                font-size: 18px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+            .userinfo-header-action {
+                button {
+                    width: 120px;
+                }
+            }
+        }
+        .userinfo-header-bottom {
+            border-top: 1px solid #F1F1F1;
+        }
+    }
+}

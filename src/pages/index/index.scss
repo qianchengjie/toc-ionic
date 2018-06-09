@@ -1,0 +1,19 @@
+page-index {
+    .header-md::after {
+        height: 0;
+        background-image: none !important;
+    }
+    super-tabs-toolbar {
+        margin-top: -10px;
+    }
+    super-tabs-container {
+        height: calc(100% - 30px) !important;
+    }
+    super-tab-button {
+        height: 40px !important;
+    }
+    .text-md {
+        line-height: 40px !important;
+        height: 40px;
+    }
+}

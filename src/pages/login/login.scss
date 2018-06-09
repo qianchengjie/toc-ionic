@@ -1,0 +1,13 @@
+page-login {
+  .item {
+    background-color: transparent;
+  }
+  .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+    border-bottom: 1px solid #dedede;
+    box-shadow: none;
+  }
+  .send-code-btn {
+    display: block;
+    margin: 33px auto !important;
+  }
+}

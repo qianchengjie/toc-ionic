@@ -1,0 +1,45 @@
+<ion-header>
+  <div class="userinfo-header">
+    <button (click)="back()" ion-button icon-only float-left outline>
+      <ion-icon color="light" name="arrow-back"></ion-icon>
+    </button>
+      <div class="userinfo-header-wrap"></div>
+      <img class="avatar" [src]="user.avatar" >
+      <div class="userinfo-header-body">
+        <div text-center class="userinfo-header-name">{{ user.username }}</div>
+        <ion-grid *ngIf="!myself" text-center class="userinfo-header-action">
+          <ion-row>
+            <ion-col col-1></ion-col>
+            <ion-col col-5>
+              <button  ion-button icon-left>
+                  <ion-icon color="light" name="add"></ion-icon>
+                  关注
+              </button>
+            </ion-col>
+            <ion-col col-5>
+                <button  ion-button icon-left outline>
+                    私信
+                </button>
+            </ion-col>
+            <ion-col col-1></ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <ion-grid text-center class="userinfo-header-bottom">
+        <ion-row>
+          <ion-col style="border-right: 1px solid #F1F1F1" col="6">
+            <b>{{ user.followedNum }}</b> 
+            {{ myself ? '关注我的人' : '关注他的人' }}
+          </ion-col>
+          <ion-col col="6">
+            <b>{{ user.followingNum }}</b>
+            {{ myself ? '我关注的人' : '他关注的人' }} 
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+</ion-header>
+
+
+<ion-content>
+</ion-content>

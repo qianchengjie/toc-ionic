@@ -1,0 +1,21 @@
+<ion-header>
+  <div class="me-header">
+    <ion-avatar (click)="goToMeInfoPage()" item-left>
+      <img [src]="user.avatar">
+    </ion-avatar>
+    <div (click)="goToMeInfoPage()" class="me-username">
+      {{ user.username }}
+    </div>
+  </div>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <button ion-item [navPush]="userInfoPage">个人主页</button>
+    <button ion-item>我的关注</button>
+    <!-- <button ion-item>我的收藏</button> -->
+    <button ion-item [navPush]="historyPage">最近浏览</button>
+    <button ion-item>设置</button>
+  </ion-list>
+</ion-content>

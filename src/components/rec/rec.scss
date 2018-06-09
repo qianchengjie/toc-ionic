@@ -1,0 +1,17 @@
+rec {
+    .card-header.card-header-md {
+        overflow: auto;
+        white-space: normal;
+    }
+    .card-md p {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+    }
+    .topic-img {
+        border-radius: 5px;
+        height: 150px;
+        background-size: cover !important;
+    }
+}

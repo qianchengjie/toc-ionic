@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-navbar>
+    <!-- <ion-title>{{ topic.title }}</ion-title> -->
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item (click)="goToTopicInfoPage()">
+      <h1 class="topic-title">{{ topic.title }}</h1>
+    </ion-item>
+    <ion-item>
+      <button (click)="goToSubmitDiscussionPage()" float-right ion-button icon-left >
+        <ion-icon color="light" name="ios-create-outline"></ion-icon>
+        添加讨论
+      </button>
+    </ion-item>
+  </ion-list>
+	<ion-item *ngIf="discussions.length !== 0">
+    <ion-avatar (click)="goToUserInfoPage()" item-start>
+      <img *ngIf="userinfo.avatar" [src]="userinfo.avatar" />
+    </ion-avatar>
+    <h2 (click)="goToUserInfoPage()">{{ userinfo.username }}</h2>
+    <!-- <p>用户简介</p> -->
+    <button item-end small ion-button>私信</button>
+  </ion-item>
+  <ion-item *ngIf="discussions.length === 0">
+      <img
+      style="margin: 20px auto;
+        align-items: center;
+        justify-content: center;
+        display: flex;"
+      src="http://localhost/file/no-discusson.jpg">
+  </ion-item>
+  <ion-slides (ionSlideDidChange)="ionSlideWillChange($event)">
+    <ion-slide *ngIf="discussionsCount > 1" class="slide">
+      <discussion-item [discussion]="discussions[discussionsCount === 2 ? nowIndex + 1 : discussionsCount - 1]"></discussion-item>
+    </ion-slide>
+    <ion-slide class="slide">
+      <discussion-item [discussion]="discussions[nowIndex]"></discussion-item>
+    </ion-slide>
+    <ion-slide *ngIf="discussionsCount > 1" class="slide">
+      <discussion-item [discussion]="discussions[nowIndex + 1]"></discussion-item>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid *ngIf="discussions[nowIndex]">
+      <ion-row>
+        <ion-col col-6>
+        </ion-col>
+        <ion-col col-2>
+            <!-- <ion-icon name="favorfill" [ngClass]="{ 'active': collection === null }"><span>收藏</span></ion-icon> -->
+        </ion-col>
+        <ion-col col-2>
+          <ion-icon (click)="doUpvote()" [ngClass]="{ 'active': upvote.state === 1 }" name="thumbs-up"><span>赞</span></ion-icon>
+        </ion-col>
+        <ion-col col-2>
+            <ion-icon name="comment"><span>{{ discussions[nowIndex].commentNum }}</span></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

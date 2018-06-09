@@ -1,0 +1,27 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>发表讨论</ion-title>
+
+    <ion-buttons end>
+      <button ion-button color="primary" (click)="submitDiscussion()">
+        提交
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <quill-editor
+    [(ngModel)]="dicussion.content"
+    (onEditorCreated)="onEditorCreated($event)"
+    [modules]="editorConfig"
+    theme="bubble"
+    required
+    [style]="{ fontSize: '16px' , background: '#FFF' }"
+    placeholder="请输入你想发表的内容">
+  </quill-editor>
+  <input id="file" hidden ng2FileSelect [uploader]="uploader" type="file" accept="image/*">
+</ion-content>

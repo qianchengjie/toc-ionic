@@ -1,0 +1,30 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>最近浏览</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card (click)="goToTopicPage(topic)" *ngFor="let topic of topics" class="topic-item">
+      <ion-card-header [style.fontWeight]="'bold'">
+        {{ topic.title }}
+      </ion-card-header>
+      <ion-card-content>
+        <p>
+          {{ utilService.html2Text(topic.content) }}
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <ion-item-divider *ngIf="!hasMore" text-center>
+    已经到底啦
+  </ion-item-divider>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
