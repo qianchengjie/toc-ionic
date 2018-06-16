@@ -1,3 +1,5 @@
+import { Message } from './../../models/Message';
+import { User } from './../../models/User';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
@@ -5,6 +7,7 @@ import { MessageDetailPage } from '../message-detail/message-detail';
 
 import { UserServiceProvider } from '../../providers/user-service/user-service';
 import { ChatServiceProvider } from '../../providers/chat-service/chat-service';
+import { UtilServiceProvider } from '../../providers/util-service/util-service';
 
 @IonicPage()
 @Component({
@@ -13,7 +16,7 @@ import { ChatServiceProvider } from '../../providers/chat-service/chat-service';
 })
 export class MessagePage {
 
-  user:any = JSON.parse(localStorage.user);
+  user: any = JSON.parse(localStorage.user);
 
   userList: Array<User> = [];
 
@@ -22,34 +25,45 @@ export class MessagePage {
     private chatService: ChatServiceProvider,
     public navCtrl: NavController,
     public navParams: NavParams) {
-    let users = [
-      new User(1, '张三', 0, null),
-      new User(2, '李四', 0, null)
-    ]
-    users.forEach(user => {
-      if (user.id != this.user.id) {
-        this.userList.push(user);
-      }
-    });
-    this.userList.forEach(user => {
-      this.chatService.getLastChat(user.id).then(messages => {
-        if (messages) {
-          user.lastChat = messages;
-        }
-      });
-    });
-    this.getUserBasicInfo(1)
   }
 
   ionViewWillEnter() {
-    this.events.subscribe('/queue/message', (message: Message) => {
+    
+    this.chatService.getUserList().then(data => {
+      if (data) {
+        this.userList = data;
+      }
       this.userList.forEach(user => {
-        if (user.id.toString() === message.from) {
+        this.chatService.getLastChat(user.id).then(messages => {
+          if (messages) {
+            user.lastChat = messages;
+          }
+        });
+      });
+    })
+
+    this.events.subscribe('/queue/message', (message: Message) => {
+      let fromId = Number(message.from);
+      let u = this.userList.find(item => item.id === fromId);
+      if (typeof u === 'undefined') {
+        this.userService.getUserBasicInfo(fromId).subscribe(
+          data => {
+            this.chatService.insertUser(data.data);
+            this.userList.unshift(data.data)
+          },
+          err => {}
+        )
+      }
+      this.userList.forEach(user => {
+        if (user.id=== fromId) {
           let currentUser = this.navCtrl.getActive().getNavParams().data.user;
           if (!(currentUser && currentUser.id === user.id)) {
             user.unReadNum++;
           }
           user.lastChat = message;
+          this.chatService.moveUserToRecently(user).then(list => {
+            this.userList = list;
+          })
         }
       });
     });
@@ -62,7 +76,7 @@ export class MessagePage {
   goToMessageDetailPage(user: User) {
     this.userList.forEach(item => {
       if (user.id === item.id) {
-        item.unReadNum = 0;
+        this.chatService.readMessage(user.id);
       }
     });
     this.navCtrl.push(MessageDetailPage, { user });
@@ -71,49 +85,11 @@ export class MessagePage {
   getUserBasicInfo(userId: number) {
     this.userService.getUserBasicInfo(userId).subscribe(
       data => {
-        console.log(data)
       }
     );
   }
 
 }
 
-class Message {
-  id: string;
-  content: string;
-  from: string;
-  to: string;
-  status: number;
-  sendTime: Date;
-  receiveTime: Date;
-  destination: string;
-  type: number;
-  constructor(content: string,
-    from: string,
-    to: string,
-    destination: string,
-    type: number) {
-    this.content = content;
-    this.from = from;
-    this.to = to;
-    this.destination = destination;
-    this.type = type;
-  }
-}
 
-class User {
-  id: number;
-  name: string;
-  lastChat: Message;
-  unReadNum: number;
-  constructor(id: number,
-  name: string,
-  unReadNum: number,
-  lastChat: Message) {
-    this.id = id;
-    this.name = name;
-    this.unReadNum = unReadNum;
-    this.lastChat = lastChat;
-  }
-}
 

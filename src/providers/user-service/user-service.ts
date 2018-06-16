@@ -43,4 +43,19 @@ export class UserServiceProvider {
     return this.httpService.doHttp(api, user, null, true);
   }
 
+  updateMyUserInfo(): void {
+    let user = JSON.parse(localStorage.user);
+    let api = this.utilService.deepClone(UserApi.basicInfo);
+    api[0] = this.utilService.placeholder(api[0], { id: user.id });
+    this.httpService.doHttp(api).subscribe(
+      data => {
+        let user1 = data.data;
+        user1.phone = user.phone;
+        user = user1;
+        localStorage.user = JSON.stringify(user);
+      },
+      err => {}
+    );
+  }
+
 }

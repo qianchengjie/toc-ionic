@@ -1,3 +1,5 @@
+import { DateStrPipe } from './../pipes/date-str/date-str';
+import { CommentPage } from './../pages/comment/comment';
 import { TopicInfoPage } from './../pages/topic-info/topic-info';
 import { SearchTopicPage } from './../pages/search-topic/search-topic';
 import { UserInfoPage } from './../pages/user-info/user-info';
@@ -39,6 +41,9 @@ import { UtilServiceProvider } from '../providers/util-service/util-service';
 import { DiscussionServiceProvider } from '../providers/discussion-service/discussion-service';
 import { UpvoteServiceProvider } from '../providers/upvote-service/upvote-service';
 import { EmojiServiceProvider } from '../providers/emoji-service/emoji-service';
+import { SettingPage } from '../pages/setting/setting';
+import { FollowServiceProvider } from '../providers/follow-service/follow-service';
+import { CommentServiceProvider } from '../providers/comment-service/comment-service';
 
 
 @NgModule({
@@ -48,10 +53,12 @@ import { EmojiServiceProvider } from '../providers/emoji-service/emoji-service';
     MessageDetailPage,
     SubmitTopicPage,
     SubmitDiscussionPage,
+    CommentPage,
     MeInfoPage,
     HistoryPage,
     UserInfoPage,
     SearchTopicPage,
+    SettingPage,
     TopicInfoPage,
     TopicPage
   ],
@@ -79,11 +86,13 @@ import { EmojiServiceProvider } from '../providers/emoji-service/emoji-service';
     MessageDetailPage,
     SubmitTopicPage,
     SubmitDiscussionPage,
+    CommentPage,
     HistoryPage,
     UserInfoPage,
     MeInfoPage,
     SearchTopicPage,
     TopicInfoPage,
+    SettingPage,
     TopicPage
   ],
   providers: [
@@ -106,6 +115,8 @@ import { EmojiServiceProvider } from '../providers/emoji-service/emoji-service';
     DiscussionServiceProvider,
     UpvoteServiceProvider,
     EmojiServiceProvider,
+    FollowServiceProvider,
+    CommentServiceProvider,
   ]
 })
 export class AppModule {

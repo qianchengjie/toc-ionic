@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { ChatServiceProvider } from '../../providers/chat-service/chat-service';
 
 @IonicPage()
 @Component({
@@ -14,9 +13,9 @@ export class TabsPage {
   meRoot = 'MePage'
 
 
-  constructor(private chatService: ChatServiceProvider,
+
+  constructor(
     public navCtrl: NavController) {
-    // this.chatService.initWs();
   }
 
   

@@ -1,3 +1,5 @@
+import { User } from './../../models/User';
+import { Message } from './../../models/Message';
 import { ViewChild, Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content, Events } from 'ionic-angular';
 
@@ -17,7 +19,7 @@ export class MessageDetailPage {
   messagesList: Array<Message> = [];
 
   messageContent: string = '';
-  user: any = JSON.parse(localStorage.user);
+  user: User = JSON.parse(localStorage.user);
   toUser: User;
   unReadCount: number = 0;
   emojiPickerShow: boolean = false;
@@ -60,12 +62,15 @@ export class MessageDetailPage {
   initChat() {
     // 接收消息
     this.events.subscribe('/queue/message', message => {
-      this.messagesList.push(message);
-      let $scrollContent = this.content.getScrollElement();
-      if ($scrollContent.scrollHeight - $scrollContent.scrollTop <= $scrollContent.clientHeight * 3/2 ) {
-        this.scrollToBottom(200);
-      } else {
-        this.unReadCount++;
+      if (message.from === this.toUser.id.toString()) {
+        this.chatService.readMessage(this.toUser.id);
+        this.messagesList.push(message);
+        let $scrollContent = this.content.getScrollElement();
+        if ($scrollContent.scrollHeight - $scrollContent.scrollTop <= $scrollContent.clientHeight * 3/2 ) {
+          this.scrollToBottom(200);
+        } else {
+          this.unReadCount++;
+        }
       }
     })
     // 发送成功回调
@@ -81,7 +86,7 @@ export class MessageDetailPage {
       // 发送消息
       let message = new Message(
         this.messageContent,
-        this.user.id,
+        this.user.id.toString(),
         this.toUser.id.toString(),
         '/queue/message',
         1
@@ -110,42 +115,5 @@ export class MessageDetailPage {
     this.paddingBottom = e.currentTarget.parentNode.parentNode.parentNode.clientHeight - 56;
     let $scrollContent = this.content.getScrollElement();
     this.content.scrollTo(0, $scrollContent.scrollTop - oldPaddingBottom + this.paddingBottom, 0);
-  }
-}
-
-
-class Message {
-  id: string;
-  content: string;
-  from: string;
-  to: string;
-  status: number;
-  sendTime: Date;
-  receiveTime: Date;
-  destination: string;
-  type: number;
-  constructor(content: string,
-    from: string,
-    to: string,
-    destination: string,
-    type: number) {
-    this.content = content;
-    this.from = from;
-    this.to = to;
-    this.destination = destination;
-    this.type = type;
-  }
-}
-
-class User {
-  id: number;
-  name: string;
-  lastChat: Message;
-  constructor(id: number,
-  name: string,
-  lastChat: Message) {
-    this.id = id;
-    this.name = name;
-    this.lastChat = lastChat;
   }
 }

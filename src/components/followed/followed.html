@@ -1,0 +1,17 @@
+<ion-list>
+  <ion-item *ngFor="let follow of followed" (click)="goToUserinfoPage(follow.user)">
+    <ion-avatar item-left>
+      <img [src]="follow.user.avatar">
+    </ion-avatar>
+    <h2>{{ follow.user.username }}</h2>
+  </ion-item>
+</ion-list>
+
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll-content
+    loadingSpinner="bubbles">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+<ion-item-divider style="position: absolute; bottom: 0" *ngIf="!hasMore" text-center>
+  已经到底啦
+</ion-item-divider>

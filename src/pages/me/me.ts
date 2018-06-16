@@ -1,3 +1,4 @@
+import { SettingPage } from './../setting/setting';
 import { Page } from 'ionic-angular/navigation/nav-util';
 import { HistoryPage } from './../history/history';
 import { MeInfoPage } from './../me-info/me-info';
@@ -14,6 +15,7 @@ export class MePage {
 
   user: any = JSON.parse(localStorage.user);
 
+  settingPage: Page = SettingPage;
   historyPage: Page = HistoryPage;
   userInfoPage: Page = UserInfoPage;
 

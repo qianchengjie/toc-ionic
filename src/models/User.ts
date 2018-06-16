@@ -1,3 +1,5 @@
+import { Message } from './Message';
+
 export class User {
     id: number;
     username: string;
@@ -8,4 +10,6 @@ export class User {
     followingNum: number;
     gmtCreate: Date;
     gmtModified: Date;
+    lastChat: Message;
+    unReadNum: number;
 }

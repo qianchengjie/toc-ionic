@@ -4,20 +4,23 @@
       <ion-icon color="light" name="arrow-back"></ion-icon>
     </button>
       <div class="userinfo-header-wrap"></div>
-      <img class="avatar" [src]="user.avatar" >
+      <img class="avatar" [src]="userinfo.avatar" >
       <div class="userinfo-header-body">
-        <div text-center class="userinfo-header-name">{{ user.username }}</div>
+        <div text-center class="userinfo-header-name">{{ userinfo.username }}</div>
         <ion-grid *ngIf="!myself" text-center class="userinfo-header-action">
           <ion-row>
             <ion-col col-1></ion-col>
             <ion-col col-5>
-              <button  ion-button icon-left>
+              <button *ngIf="!isFollow" (click)="follow(userinfo.id)" ion-button icon-left>
                   <ion-icon color="light" name="add"></ion-icon>
                   关注
               </button>
+              <button color="light" *ngIf="isFollow" (click)="unfollow()" ion-button icon-left>
+                  已关注
+              </button>
             </ion-col>
             <ion-col col-5>
-                <button  ion-button icon-left outline>
+                <button (click)="goToMessageDetailPage()" ion-button icon-left outline>
                     私信
                 </button>
             </ion-col>
@@ -27,12 +30,12 @@
       </div>
       <ion-grid text-center class="userinfo-header-bottom">
         <ion-row>
-          <ion-col style="border-right: 1px solid #F1F1F1" col="6">
-            <b>{{ user.followedNum }}</b> 
+          <ion-col (click)="doShowFollowed()" style="border-right: 1px solid #F1F1F1" col="6">
+            <b>{{ userinfo.followedNum }}</b> 
             {{ myself ? '关注我的人' : '关注他的人' }}
           </ion-col>
-          <ion-col col="6">
-            <b>{{ user.followingNum }}</b>
+          <ion-col (click)="doShowFollowing()" col="6">
+            <b>{{ userinfo.followingNum }}</b>
             {{ myself ? '我关注的人' : '他关注的人' }} 
           </ion-col>
         </ion-row>
@@ -42,4 +45,6 @@
 
 
 <ion-content>
+  <followed *ngIf="showFollowed" [userId]="userinfo.id"></followed>
+  <following *ngIf="!showFollowed" [userId]="userinfo.id"></following>
 </ion-content>

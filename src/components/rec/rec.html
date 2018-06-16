@@ -23,4 +23,13 @@
       </ion-row>
     </ion-card>
   </ion-list>
+  
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <ion-item-divider *ngIf="!hasMore" text-center>
+    已经到底啦
+  </ion-item-divider>
 </ion-content>

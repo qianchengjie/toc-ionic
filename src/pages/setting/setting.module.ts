@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { CommentPage } from './comment';
+import { SettingPage } from './setting';
 
 @NgModule({
   declarations: [
-    CommentPage,
+    SettingPage,
   ],
   imports: [
-    IonicPageModule.forChild(CommentPage),
+    IonicPageModule.forChild(SettingPage),
   ],
 })
-export class CommentPageModule {}
+export class SettingPageModule {}

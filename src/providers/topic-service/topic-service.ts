@@ -24,8 +24,8 @@ export class TopicServiceProvider {
     return this.httpService.doHttp(TopicApi.submitTopic, topic, {}, true);
   }
 
-  getAllTopics(): Observable<any> {
-    return this.httpService.doHttp(TopicApi.getAllTopics);
+  getAllTopics(pageNum: number): Observable<any> {
+    return this.httpService.doHttp(TopicApi.getAllTopics, { pageNum });
   }
 
   findAllHistory(userId: number, pageNum: number): Observable<any> {

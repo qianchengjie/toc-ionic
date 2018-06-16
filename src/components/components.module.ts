@@ -4,11 +4,15 @@ import { HotComponent } from './hot/hot';
 import { RecComponent } from './rec/rec';
 import { DiscussionItemComponent } from './discussion-item/discussion-item';
 import { EmojiPickerComponent } from './emoji-picker/emoji-picker';
+import { FollowedComponent } from './followed/followed';
+import { FollowingComponent } from './following/following';
 @NgModule({
 	declarations: [HotComponent,
     RecComponent,
     DiscussionItemComponent,
     EmojiPickerComponent,
+    FollowedComponent,
+    FollowingComponent,
     ],
 	imports: [
 		IonicModule
@@ -17,6 +21,8 @@ import { EmojiPickerComponent } from './emoji-picker/emoji-picker';
 	RecComponent,
     DiscussionItemComponent,
     EmojiPickerComponent,
+    FollowedComponent,
+    FollowingComponent,
     ],
 	entryComponents: [
 		HotComponent,

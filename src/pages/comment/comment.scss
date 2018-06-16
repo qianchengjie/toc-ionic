@@ -15,4 +15,20 @@ page-comment {
             padding-top: 10px;
         }
     }
+    .my-toolbar {
+        align-items: flex-end;
+        ion-buttons {
+            padding-bottom: 10px;
+        }
+    }
+    .text-input {
+        height: 21px;
+        align-self: top;
+        caret-color: #0077e6;
+        padding-bottom: 2px;
+        border-bottom: 2px solid rgba(0,0,0,.4);
+        &:focus {
+            border-color: #0077e6;
+        }
+    }
 }

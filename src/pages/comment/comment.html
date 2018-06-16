@@ -7,28 +7,45 @@
 
 <ion-content>
   <ion-list>
-    <ion-item>
-      <ion-avatar>
-        <img src="http://img1.imgtn.bdimg.com/it/u=3742948713,2733458390&fm=27&gp=0.jpg?0.15025953766888">
+    <div *ngIf="comments.length === 0">
+        <img style="width: 40%; margin: 40px 0 0 30%;" src="../../assets/imgs/no-comment.png">
+        <h3 text-center>暂无评论</h3>
+    </div>
+    <ion-item *ngFor="let comment of comments">
+      <ion-avatar (click)="goToUserInfoPage(comment.user)">
+        <img [src]="comment.user.avatar">
       </ion-avatar>
       <div class="comment-info">
-          <h2>asdasdas</h2>
-          <p style="white-space: normal;">啊撒大苏打撒撒旦啊撒大苏打撒撒旦啊撒大苏打撒撒旦啊撒大苏打撒撒旦啊撒大苏打撒撒旦
-              啊撒大苏打撒撒旦
-              啊撒大苏打撒撒旦
-              啊撒大苏打撒撒旦
-              啊撒大苏打撒撒旦
-              啊撒大苏打撒撒旦
-              啊撒大苏打撒撒旦
-          </p>
+          <h2 (click)="goToUserInfoPage(comment.user)">{{ comment.user.username }}</h2>
+          <p style="white-space: normal;">{{ comment.content }}</p>
           <div>
-            <span class="comment-time">{{ date | dateStr }}</span>
-            <button ion-button icon-left clear float-right>
-              <ion-icon mode="ios"[isActive]="true" name="thumbs-up"></ion-icon>
-              11
+            <span class="comment-time">{{ comment.gmtCreate }}</span>
+            <button (click)="doUpvote(comment)" [color]="comment.upvoteState === 0 ? 'dark' : 'primary'" ion-button icon-left clear float-right>
+              <ion-icon name="thumbs-up"></ion-icon> {{ comment.upvoteNum }}
             </button>
           </div>
       </div>
     </ion-item>
   </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite()">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <!-- <ion-item-divider style="position: absolute; bottom: 0" *ngIf="!hasMore" text-center>
+    已经到底啦
+  </ion-item-divider> -->
 </ion-content>
+
+
+<ion-footer>
+  <ion-toolbar class="my-toolbar">
+    <ion-textarea autoresize="100" [(ngModel)]="commentContent"></ion-textarea>
+    <ion-buttons end>
+      <button (click)="addComment()" [disabled]="!commentContent" ion-button icon-right>
+        <ion-icon [color]="commentContent ? 'primary' : 'dark'" name="send">
+        </ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

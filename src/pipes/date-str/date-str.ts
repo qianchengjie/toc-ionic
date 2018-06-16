@@ -23,15 +23,14 @@ export class DateStrPipe implements PipeTransform {
         var month = day * 30;
         var now = new Date().getTime();   //获取当前时间毫秒
         var diffValue = now - dateTimeStamp;//时间差
-
         if (diffValue < 0) {
             return;
         }
-        var minC = parseInt(String(diffValue / minute));  //计算时间差的分，时，天，周，月
-        var hourC = parseInt(String(diffValue / hour));
-        var dayC = parseInt(String(diffValue / day));
-        var weekC = parseInt(String(diffValue / week));
-        var monthC = parseInt(String(diffValue / month));
+        var minC = parseInt(String((diffValue / minute).toFixed(2)));  //计算时间差的分，时，天，周，月
+        var hourC = parseInt(String((diffValue / hour).toFixed(2)));
+        var dayC = parseInt(String((diffValue / day).toFixed(2)));
+        var weekC = parseInt(String((diffValue / week).toFixed(2)));
+        var monthC = parseInt(String((diffValue / month).toFixed(2)));
         let result;
         if (monthC >= 1 && monthC <= 3) {
             result = " " + monthC + "月前"

@@ -17,13 +17,13 @@
       <p>请完成实名认证</p>
       <ion-note item-end>3:43 pm</ion-note>
     </ion-item> -->
-    <ion-item-sliding *ngFor="let user of userList" (click)="goToMessageDetailPage(user)">
+    <ion-item-sliding *ngFor="let item of userList" (click)="goToMessageDetailPage(item)">
       <ion-item>
         <ion-avatar item-start>
-          <img src="http://img1.imgtn.bdimg.com/it/u=3742948713,2733458390&fm=27&gp=0.jpg">
+          <img [src]="item.avatar">
         </ion-avatar>
-        <h2>{{ user.name }}<p float-right *ngIf="user.lastChat">{{ user.lastChat.sendTime | dateStr }}</p></h2>
-        <p>{{ user.lastChat ? user.lastChat.content : '　' }}<ion-badge *ngIf="user.unReadNum !== 0" float-right color="danger">{{ user.unReadNum }}</ion-badge></p>
+        <h2>{{ item.username }}<p float-right *ngIf="item.lastChat">{{ item.lastChat.sendTime | dateStr }}</p></h2>
+        <p>{{ item.lastChat ? item.lastChat.content : '　' }}<ion-badge *ngIf="item.unReadNum !== 0" float-right color="danger">{{ item.unReadNum }}</ion-badge></p>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="primary">

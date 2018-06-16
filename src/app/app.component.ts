@@ -1,3 +1,5 @@
+import { User } from './../models/User';
+import { ChatServiceProvider } from './../providers/chat-service/chat-service';
 import { TabsPage } from './../pages/tabs/tabs';
 import { Component, ViewChild } from '@angular/core';
 import { Platform } from 'ionic-angular';
@@ -12,13 +14,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 })
 export class MyApp {
 
+  isLogin: boolean = typeof localStorage.user !== 'undefined';
+  rootPage: any = typeof localStorage.token === 'undefined' ? 'LoginPage' : TabsPage;
 
-  rootPage:any = typeof localStorage.token === 'undefined' ? 'LoginPage' : TabsPage;
+
 
   // rootPage:any = localStorage.token && (typeof localStorage.token !== 'undefined') ? TabsPage : LoginPage;
   constructor(private app: App,
     private appMinimize: AppMinimize,
     private mobileAccessibility: MobileAccessibility,
+    private chatService: ChatServiceProvider,
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen) {
@@ -26,21 +31,22 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      mobileAccessibility.usePreferredTextZoom(false);
+      this.mobileAccessibility.usePreferredTextZoom(false);
       statusBar.styleDefault();
       splashScreen.hide();
-      platform.registerBackButtonAction(() => 
-      {
-        let nav = app.getActiveNav();
-        alert(nav.id)
-        alert(nav.name)
-        alert(nav.length)
-        if (app.getActiveNav().canGoBack()) {
-          app.getActiveNav().pop();
-        } else {
-          appMinimize.minimize();
-        }
-     });
+      if (this.isLogin) {
+        this.chatService.initWs();
+      }
+
+    //   platform.registerBackButtonAction(() => 
+    //   {
+    //     let nav = this.app.getActiveNav();
+    //     if (app.getActiveNav().canGoBack()) {
+    //       app.getActiveNav().pop();
+    //     } else {
+    //       this.appMinimize.minimize();
+    //     }
+    //  });
     });
     
   }

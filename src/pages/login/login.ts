@@ -1,3 +1,4 @@
+import { ChatServiceProvider } from './../../providers/chat-service/chat-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
@@ -20,7 +21,8 @@ export class LoginPage {
   loginForm: FormGroup;
 
 
-  constructor(private loadingCtrl: LoadingController,
+  constructor(private chatService: ChatServiceProvider,
+    private loadingCtrl: LoadingController,
     private userService: UserServiceProvider,
     public formBuilder: FormBuilder,
     public navCtrl: NavController,
@@ -57,6 +59,7 @@ export class LoginPage {
       data => {
         localStorage.user = JSON.stringify(data.data.user);
         localStorage.token = data.data.token;
+        this.chatService.initWs();
         // setTimeout(() => {
         loader.dismiss();
         this.navCtrl.setRoot(TabsPage);

@@ -22,7 +22,7 @@
     </ion-avatar>
     <h2 (click)="goToUserInfoPage()">{{ userinfo.username }}</h2>
     <!-- <p>用户简介</p> -->
-    <button item-end small ion-button>私信</button>
+    <button *ngIf="user.id !== userinfo.id" item-end small ion-button (click)="goToMessageDetailPage()">私信</button>
   </ion-item>
   <ion-item *ngIf="discussions.length === 0">
       <img
@@ -30,7 +30,7 @@
         align-items: center;
         justify-content: center;
         display: flex;"
-      src="http://localhost/file/no-discusson.jpg">
+      src="../../assets/imgs/no-discusson.jpg">
   </ion-item>
   <ion-slides (ionSlideDidChange)="ionSlideWillChange($event)">
     <ion-slide *ngIf="discussionsCount > 1" class="slide">
@@ -58,7 +58,7 @@
           <ion-icon (click)="doUpvote()" [ngClass]="{ 'active': upvote.state === 1 }" name="thumbs-up"><span>赞</span></ion-icon>
         </ion-col>
         <ion-col col-2>
-            <ion-icon name="comment"><span>{{ discussions[nowIndex].commentNum }}</span></ion-icon>
+            <ion-icon (click)="goToCommentPage()" name="comment"><span>{{ discussions[nowIndex].commentNum }}</span></ion-icon>
         </ion-col>
       </ion-row>
     </ion-grid>

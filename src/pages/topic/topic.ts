@@ -1,7 +1,8 @@
+import { CommentPage } from './../comment/comment';
+import { MessageDetailPage } from './../message-detail/message-detail';
 import { History } from './../../models/History';
 import { TopicServiceProvider } from './../../providers/topic-service/topic-service';
 import { User } from './../../models/User';
-import { UtilServiceProvider } from './../../providers/util-service/util-service';
 import { UpvoteServiceProvider } from './../../providers/upvote-service/upvote-service';
 import { DiscussionServiceProvider } from './../../providers/discussion-service/discussion-service';
 import { SubmitDiscussionPage } from './../submit-discussion/submit-discussion';
@@ -38,7 +39,6 @@ export class TopicPage {
 
   constructor(private topicService: TopicServiceProvider,
     private userService: UserServiceProvider,
-    private utilService: UtilServiceProvider,
     private upvoteService: UpvoteServiceProvider,
     private discussionService: DiscussionServiceProvider,
     public navCtrl: NavController,
@@ -52,6 +52,7 @@ export class TopicPage {
     let history = new History();
     history.topicId = this.topic.id;
     history.userId = this.user.id;
+    this.getAllDiscussionByTopicId();
     topicService.addHistroy(history).subscribe(
       data=>{},
       err=>{}
@@ -63,10 +64,10 @@ export class TopicPage {
     this.discussionService.getAllDiscussionByTopicId(this.topic.id).subscribe(
       data => {
         this.discussions = data.data;
+        this.discussionsCount = data.data.length;
         if (this.discussions.length > 0) {
           this.getUpvoteState(this.discussions[this.nowIndex].id);
           this.getUserBasicInfo(this.discussions[this.nowIndex].userId);
-          this.discussionsCount = data.data.length;
         }
       },
       err => {}
@@ -82,8 +83,8 @@ export class TopicPage {
   }
 
   ionViewWillEnter() {
-    this.getAllDiscussionByTopicId();
-    this.slides.slideNext(0)
+    console.log(this.navCtrl.getPrevious().name)
+    this.slides.slideTo(1, 0);
   }
 
   ionSlideWillChange(item) {
@@ -99,6 +100,10 @@ export class TopicPage {
       this.getUpvoteState(this.discussions[this.nowIndex].id);
       this.getUserBasicInfo(this.discussions[this.nowIndex].userId);
     }
+  }
+
+  goToCommentPage() {
+    this.navCtrl.push(CommentPage, { pId: this.discussions[this.nowIndex].id });
   }
 
   getDiscussion(direction: number): void {
@@ -174,6 +179,11 @@ export class TopicPage {
   moveElement(arr: Array<Discussion>, n: number): Array<Discussion> {
     if (Math.abs(n) > arr.length) n = n % arr.length
     return arr.slice(-n).concat(arr.slice(0, -n))
+  }
+
+  
+  goToMessageDetailPage() {
+    this.navCtrl.push(MessageDetailPage, { user: this.userinfo })
   }
 
 }

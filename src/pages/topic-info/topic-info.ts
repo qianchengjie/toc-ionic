@@ -4,6 +4,7 @@ import { UserInfoPage } from './../user-info/user-info';
 import { User } from './../../models/User';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { UserServiceProvider } from '../../providers/user-service/user-service';
 
 @IonicPage()
 @Component({
@@ -12,11 +13,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TopicInfoPage {
 
-  userinfo: User = JSON.parse(localStorage.user);
+  userinfo: User = new User();
+  user: User = JSON.parse(localStorage.user);
   topic: Topic;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private userService: UserServiceProvider,
+    public navCtrl: NavController, public navParams: NavParams) {
     this.topic = navParams.get('topic')
+    this.userService.getUserBasicInfo(this.topic.userId).subscribe(
+      data => this.userinfo = data.data,
+      err => {}
+    )
   }
   
   goToUserInfoPage(): void {
@@ -26,6 +33,5 @@ export class TopicInfoPage {
   goToSubmitDiscussionPage(): void {
     this.navCtrl.push(SubmitDiscussionPage, { topicId: this.topic.id })
   }
-
 
 }
